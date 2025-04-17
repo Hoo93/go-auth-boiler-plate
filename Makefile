@@ -1,6 +1,7 @@
 GOHOSTOS:=$(shell go env GOHOSTOS)
 GOPATH:=$(shell go env GOPATH)
 VERSION=$(shell git describe --tags --always)
+SERVICE_NAME=auth-server-boiler-plate
 
 ifeq ($(GOHOSTOS), windows)
 	#the `find.exe` is different from `find` in bash/shell.
@@ -82,4 +83,4 @@ help:
 .DEFAULT_GOAL := help
 
 service-run:
-	./bin/auth-server-boiler-plate
+	./bin/$(SERVICE_NAME) -conf ./configs
