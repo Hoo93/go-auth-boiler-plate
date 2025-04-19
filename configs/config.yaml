@@ -8,7 +8,7 @@ server:
 data:
   database:
     driver: postgresql
-    source: postgresql://postgres:postgres@localhost:5432/postgres?schema=hospital_template
+    source: postgresql://postgres:postgres@localhost:5432/postgres?schema=auth_test
   redis:
     addr: 127.0.0.1:6379
     read_timeout: 0.2s
