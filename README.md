@@ -1,3 +1,9 @@
+# 1. 프로젝트 개요
+* 이 프로젝트는 MSA 환경을 위한 인정서버입니다.
+* 인증서버는 토큰 발급, 검증, 갱신 기능을 제공합니다.
+* 권한 정보를 담은 passport를 발급합니다.
+
+
 # Kratos Project Template
 
 ## Install Kratos
