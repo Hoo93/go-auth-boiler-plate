@@ -3,6 +3,13 @@
 * 인증서버는 토큰 발급, 검증, 갱신 기능을 제공합니다.
 * 권한 정보를 담은 passport를 발급합니다.
 
+# 2. 기술스택
+* Go
+* Kratos
+* gRPC
+* Protobuf
+* gorm
+
 
 # Kratos Project Template
 
