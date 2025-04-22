@@ -5,7 +5,7 @@
 
 # 2. 기술스택
 * Go
-* Kratos
+* Kratos1
 * gRPC
 * Protobuf
 * gorm

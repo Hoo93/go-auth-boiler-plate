@@ -18,11 +18,27 @@ type Data struct {
 }
 
 // NewData .
-func NewData(c *conf.Data, logger log.Logger) (*Data, func(), error) {
+//func NewData(c *conf.Data, logger log.Logger) (*Data, func(), error) {
+//	cleanup := func() {
+//		log.NewHelper(logger).Info("closing the data resources")
+//	}
+//	return &Data{}, cleanup, nil
+//}
+
+func NewData(c *conf.Data, logger log.Logger, db *gorm.DB) (*Data, func(), error) {
+	log := log.NewHelper(logger)
+	log.Info("initializing data layer")
+
 	cleanup := func() {
-		log.NewHelper(logger).Info("closing the data resources")
+		log.Info("closing the data resources")
+		sqlDB, _ := db.DB()
+		sqlDB.Close()
 	}
-	return &Data{}, cleanup, nil
+
+	return &Data{
+		log: log,
+		db:  db,
+	}, cleanup, nil
 }
 
 func NewGormClient(cfg *conf.Bootstrap, logger log.Logger) *gorm.DB {
