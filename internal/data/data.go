@@ -9,7 +9,8 @@ import (
 )
 
 // ProviderSet is data providers.
-var ProviderSet = wire.NewSet(NewData, NewGreeterRepo)
+// wire 에 등록해 의존성이 자동으로 관리됨
+var ProviderSet = wire.NewSet(NewData, NewGreeterRepo, NewGormClient)
 
 // Data .
 type Data struct {
@@ -41,11 +42,10 @@ func NewData(c *conf.Data, logger log.Logger, db *gorm.DB) (*Data, func(), error
 	}, cleanup, nil
 }
 
-func NewGormClient(cfg *conf.Bootstrap, logger log.Logger) *gorm.DB {
-	// TODO initialize gorm.DB client
+func NewGormClient(cfg *conf.Data, logger log.Logger) *gorm.DB {
 	log.NewHelper(logger).Info("init gorm client")
 
-	driver := postgres.Open(cfg.Data.Database.Source)
+	driver := postgres.Open(cfg.Database.Source)
 
 	client, err := gorm.Open(driver, &gorm.Config{})
 	if err != nil {
