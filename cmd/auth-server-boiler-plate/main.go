@@ -1,10 +1,13 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"os"
 
 	"auth-server-boiler-plate/internal/conf"
+
+	"github.com/vetching-corporation/vetching-infra/sdk/go/telemetry"
 
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/config"
@@ -45,6 +48,15 @@ func newApp(logger log.Logger, gs *grpc.Server) *kratos.App {
 }
 
 func main() {
+	// init telementry
+	cfg := telemetry.NewConfig("auth-server")
+	ctx := context.Background()
+	shutdown, err := telemetry.InitTracer(ctx, cfg)
+	if err != nil {
+		log.Fatalf("failed to init telemetry: %v", err)
+	}
+	defer shutdown()
+
 	flag.Parse()
 	logger := log.With(log.NewStdLogger(os.Stdout),
 		"ts", log.DefaultTimestamp,
