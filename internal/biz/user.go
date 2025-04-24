@@ -7,7 +7,7 @@ import (
 )
 
 type UserRepository interface {
-	FindById(ctx context.Context, id int64) (*models.User, error)
+	FindById(ctx context.Context, id int32) (*models.User, error)
 }
 
 type UserUsecase struct {
@@ -19,7 +19,7 @@ func NewUserUsecase(repo UserRepository, logger log.Logger) *UserUsecase {
 	return &UserUsecase{repo: repo, log: log.NewHelper(logger)}
 }
 
-func (uc *UserUsecase) FindById(ctx context.Context, id int64) (*models.User, error) {
+func (uc *UserUsecase) FindById(ctx context.Context, id int32) (*models.User, error) {
 	uc.log.WithContext(ctx).Infof("FindById: %d", id)
 	return uc.repo.FindById(ctx, id)
 }

@@ -12,7 +12,7 @@ type userRepository struct {
 	log  *log.Helper
 }
 
-// NewGreeterRepo .
+// NewUserRepository
 func NewUserRepository(data *Data, logger log.Logger) biz.UserRepository {
 	return &userRepository{
 		data: data,
@@ -20,7 +20,7 @@ func NewUserRepository(data *Data, logger log.Logger) biz.UserRepository {
 	}
 }
 
-func (r *userRepository) FindById(ctx context.Context, id int64) (*models.User, error) {
+func (r *userRepository) FindById(ctx context.Context, id int32) (*models.User, error) {
 	var user models.User
 	err := r.data.db.WithContext(ctx).First(&user, id).Error
 

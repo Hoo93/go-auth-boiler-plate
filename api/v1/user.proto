@@ -1,0 +1,25 @@
+syntax = 'proto3';
+
+package auth_server_boiler_plate.api.user;
+
+option go_package = "auth-server-boiler-plate/api/user/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.user.v1";
+option java_outer_classname = "UserProtoV1";
+
+service User {
+  rpc GetUser (GetUserRequest) returns (GetUserResponse) {
+  }
+}
+
+
+message GetUserRequest {
+  int32 id = 1;
+}
+
+message GetUserResponse {
+  int32 id = 1;
+  string user_name = 2;
+  string email = 3;
+  string password = 4;
+}
