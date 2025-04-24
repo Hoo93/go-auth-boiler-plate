@@ -10,7 +10,12 @@ import (
 
 // ProviderSet is data providers.
 // wire 에 등록해 의존성이 자동으로 관리됨
-var ProviderSet = wire.NewSet(NewData, NewGreeterRepo, NewGormClient)
+var ProviderSet = wire.NewSet(
+	NewData,
+	NewGormClient,
+	NewGreeterRepo,
+	NewUserRepository,
+)
 
 // Data .
 type Data struct {
