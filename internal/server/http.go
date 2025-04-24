@@ -1,7 +1,7 @@
 package server
 
 import (
-	v1 "auth-server-boiler-plate/api/helloworld/v1"
+	"auth-server-boiler-plate/api/v1"
 	"auth-server-boiler-plate/internal/conf"
 	"auth-server-boiler-plate/internal/service"
 

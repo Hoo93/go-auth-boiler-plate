@@ -1,15 +1,15 @@
 package service
 
 import (
+	v12 "auth-server-boiler-plate/api/v1"
 	"context"
 
-	v1 "auth-server-boiler-plate/api/helloworld/v1"
 	"auth-server-boiler-plate/internal/biz"
 )
 
 // GreeterService is a greeter service.
 type GreeterService struct {
-	v1.UnimplementedGreeterServer
+	v12.UnimplementedGreeterServer
 
 	uc *biz.GreeterUsecase
 }
@@ -20,10 +20,10 @@ func NewGreeterService(uc *biz.GreeterUsecase) *GreeterService {
 }
 
 // SayHello implements helloworld.GreeterServer.
-func (s *GreeterService) SayHello(ctx context.Context, in *v1.HelloRequest) (*v1.HelloReply, error) {
+func (s *GreeterService) SayHello(ctx context.Context, in *v12.HelloRequest) (*v12.HelloReply, error) {
 	g, err := s.uc.CreateGreeter(ctx, &biz.Greeter{Hello: in.Name})
 	if err != nil {
 		return nil, err
 	}
-	return &v1.HelloReply{Message: "Hello " + g.Hello}, nil
+	return &v12.HelloReply{Message: "Hello " + g.Hello}, nil
 }
